@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Die from './Die'
-
+import RollDice from './RollDice';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
-    <div className="App">
-      <Die face="five"/> 
+    <div className="container">
+     <RollDice />
     </div>
   );
 }
