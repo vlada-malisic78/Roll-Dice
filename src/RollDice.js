@@ -12,7 +12,8 @@ class RollDice extends Component {
         super(props);
         this.state = { 
             die1: 'one',
-            die2: 'two'
+            die2: 'two',
+            isRolling: false
          }
     }
 
@@ -24,19 +25,25 @@ class RollDice extends Component {
         
         this.setState({
             die1: newDie1,
-            die2: newDie2
+            die2: newDie2,
+            isRolling: true
         })
+
+        setTimeout(() => {this.setState({isRolling: false})},1000)
     }
 
     render() { 
+        const disable  = this.state.isRolling ? 'disabled' : '' ;
         return ( 
             <div className="container">
                 <div className="container d-flex justify-content-center">
-                    <Die  face={this.state.die1}/>
-                    <Die  face={this.state.die2}/>
+                    <Die  face={this.state.die1} shaking={this.state.isRolling}/>
+                    <Die face={this.state.die2} shaking={this.state.isRolling}/>
                 </div>      
-                <div className="container">
-                    <buton onClick={this.roll} className="btn btn-warning btn-block p-3">Roll Dice</buton>
+                <div className="container text-center">
+                    <a href="#" onClick={this.roll} className={`btn btn-warning p-3 w-50 ${disable}`} role="button" aria-disabled="true" >
+                        {this.state.isRolling ? 'Rolling...' : 'Roll Dice!' }
+                    </a>
                 </div>
             </div>
          );
